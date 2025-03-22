@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+import streamlit as st
 
 
 from openai import OpenAI
@@ -23,9 +24,9 @@ memory = SqliteSaver.from_conn_string(":memory:")
 # Load environment variables from .env file
 load_dotenv()
 
-openai_key = os.getenv("OPENAI_API_KEY")
+openai_key = st.secrets("OPENAI_API_KEY")
 
-tavily = os.getenv("TAVILY_API_KEY")
+tavily = st.secrets("TAVILY_API_KEY")
 
 llm_name = "gpt-3.5-turbo"
 model = ChatOpenAI(api_key=openai_key, model=llm_name)
